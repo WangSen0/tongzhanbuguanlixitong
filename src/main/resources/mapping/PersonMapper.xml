@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.mapper.PersonMapper">
+    <insert id="newPerson" parameterType="ssm.entity.Person">
+        INSERT INTO t_person (name,sex,birthday,nation,nativeplace,part,parttime,location,worktime,health,title,eduction1,school1,eduction2,
+        school2,job,parttimejob,resume,reason) VALUES (#{person.name},#{person.sex},#{person.birthday},#{person.nation},#{person.nativeplace},
+        #{person.part},#{person.parttime},#{person.location},#{person.worktime},#{person.health},#{person.title},
+        #{person.eduction1},#{person.school1},#{person.eduction2},#{person.school2},#{person.job},#{person.parttimejob},
+        #{person.resume},#{person.reason})
+    </insert>
+    <delete id="delPersonById">
+        DELETE FROM t_person where id=#{id}
+    </delete>
+    <update id="updatePerson">
+        UPDATE t_person SET name=#{person.name},sex=#{person.sex},birthday=#{person.birthday},nation=#{person.nation},
+        nativeplace=#{person.nativeplace},part=#{person.part},parttime=#{person.parttime},location=#{person.location},
+        worktime=#{person.worktime},health=#{person.health},title=#{person.title},eduction1=#{person.eduction1},
+        school1=#{person.school1},eduction2=#{person.eduction2},school2=#{person.school2},job=#{person.job},
+        parttimejob=#{person.parttimejob},resume=#{person.resume},reason=#{person.reason}
+    </update>
+    <select id="queryById" resultType="ssm.entity.Person">
+        SELECT * FROM t_person WHERE id=#{id}
+    </select>
+    <select id="listPerson" resultType="ssm.entity.Person">
+        SELECT * FROM t_person
+    </select>
+    <select id="queryName" resultType="java.lang.String">
+        SELECT DISTINCT (name) FROM t_person
+    </select>
+    <select id="queryByCondition" parameterType="ssm.entity.Condition" resultType="ssm.entity.Person">
+        SELECT * FROM t_person
+        <where>
+            1=1
+            <if test="condition.name!=null and condition.name!=''">AND name=#{condition.name}</if>
+            <if test="condition.sex!=null and condition.sex!=''">AND sex=#{condition.sex}</if>
+            <if test="condition.time1!=null and condition.time1!=''">AND birthday &gt;= #{condition.time1}</if>
+            <if test="condition.time2!=null and condition.time2!=''">AND birthday &lt;#{condition.time2}</if>
+            <if test="condition.nation!=null and condition.nation!=''">AND nation=#{condition.nation}</if>
+            <if test="condition.part!=null and condition.part!=''">AND part=#{condition.part}</if>
+            <if test="condition.title!=null and condition.title!=''">AND title=#{condition.title}</if>
+        </where>
+        LIMIT #{offerset},#{rows}
+    </select>
+    <select id="queryByPage" resultType="ssm.entity.Person">
+        SELECT * FROM t_person LIMIT #{offerset},#{rows}
+    </select>
+</mapper>

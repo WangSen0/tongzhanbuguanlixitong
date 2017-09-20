@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.mapper.UserMapper">
+    <insert id="newUser">
+        INSERT INTO t_user VALUES (#{user.id},#{user.name},#{user.password})
+    </insert>
+    <delete id="delById">
+        DELETE from t_user where id=#{id}
+    </delete>
+    <select id="listAllPerson"  resultType="ssm.entity.User">
+        SELECT * from t_user
+    </select>
+    <select id="queryById" parameterType="java.lang.Integer" resultType="ssm.entity.User">
+        SELECT * from t_user WHERE id=#{id}
+    </select>
+    <update id="update">
+        UPDATE t_user SET name=#{user.name},password=#{user.password} where id=#{user.id}
+    </update>
+    <select id="queryByNameAndPassword" resultType="ssm.entity.User">
+        SELECT * FROM t_user where name=#{name} and password=#{password}
+    </select>
+    <select id="queryByName" resultType="ssm.entity.User">
+        SELECT * from t_user WHERE name=#{name}
+    </select>
+</mapper>
