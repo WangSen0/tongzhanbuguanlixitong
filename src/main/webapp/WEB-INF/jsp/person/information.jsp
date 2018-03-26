@@ -79,7 +79,7 @@
                 <button class="btn btn-primary searchbtn" type="button"onclick="search()">搜索</button>
             </div>
         </div>
-        <div style="width:98%;margin:0px auto;margin-top: 30px;margin-bottom: 50px">
+        <div style="width:98%;margin:0px auto;margin-top: 30px;margin-bottom: 50px;min-height:300px">
             <table style="font-size: 14px" id="table" class="table table-hover table-bordered tbb">
                 <thead>
                     <th>查看</th>
@@ -146,13 +146,13 @@
             url: "/information/addPerson/"+personId,//注意路径
             success:function(data) {
                 if(data=="success"){
-                    alert("添加成功");
                     nowId.parentNode.parentNode.cells[9].innerHTML="已添加";
                     params={};
                     evaluate(params);
                     var currentPage=parseInt(document.getElementById("currentPage").innerText);
                     $("#rows").html('');
                     ajaxsearch(currentPage,params);
+                    alert("添加成功");
                 }else{
                     alert("添加失败");
                 }

@@ -32,13 +32,13 @@
         <div style="padding: 15px;border-bottom: 1px solid #dddddd;width: 100%;height: 70px">
             <span class="glyphicon glyphicon-search"></span>
             <input id="queryUserName" type="text"/>
-            <button class="btn-primary btn-sm wangsen" type="button" onclick="queryUserName()">查询</button>
+            <button class=" btn btn-primary btn-sm wangsen" type="button" onclick="queryUserName()">查询</button>
             <span class="head" style="margin-left: 700px;font-size: 20px">
                 <span class="glyphicon glyphicon-user"></span>
                 <a href="javascript:void(0)" onclick="document.getElementById('addLight').style.display='block'">添加用户</a>
             </span>
         </div>
-        <div id="qwe" style="margin:0px auto;display: none;margin-top: 30px;font-size: 3px;width: 1260px;margin-bottom: 60px">
+        <div id="qwe" style="margin:0px auto;display: none;margin-top: 30px;font-size: 3px;width: 1260px;margin-bottom: 60px;min-height:400">
             <table style="font-size: 14px" id="table" class="table table-hover table-bordered tbb" id="table" class="table table-hover table-bordered tbb">
                 <thead>
                 <td >用户名</td>

@@ -183,7 +183,7 @@
             </div>
         </div>
     </div>
-    <div id="qwe" style="width:98%;margin: 0px auto;display: none;margin-top: 30px">
+    <div id="qwe" style="width:98%;margin: 0px auto;display: none;margin-top: 30px;min-height: 300px">
         <table id="table" class="table table-hover table-bordered tbb">
             <thead>
             <th width="50px">查看</th>
@@ -205,24 +205,28 @@
             <tbody id="rows">
             </tbody>
         </table>
-        <jsp:include page="../common/pagination.jsp" flush="true"/>
-        <div style="margin-bottom: 20px">
-            <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('upload').style.display='block'">导出excel</button>
-            <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('upload2').submit()">全部导出</button>
-            <select style="margin-left: 400px;height: 28px;border-radius: 4px" id="chartCondition">
-                <option value="null"></option>
-                <option value="birthday5">出生日期(5年)</option>
-                <option value="birthday10">出生日期(10年)</option>
-                <option value="nation">民族</option>
-                <option value="politicalStatus">政治面貌</option>
-                <option value="staffStatus">教职工类别</option>
-                <option value="employPosition">聘任职务</option>
-                <option value="outparttraining">党外人士培养类别</option>
-            </select>
-            <button style="border-left: 20px" class="btn btn-primary btn-sm w_100" data-toggle="modal" data-target="#chart" onclick="analyse()">分析</button>
-        </div>
+
+
     </div>
-    <div class="modal fade" id="chart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+    <jsp:include page="../common/pagination.jsp" flush="true"/>
+    <div style="margin-bottom: 20px;">
+        <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('upload').style.display='block'">导出excel</button>
+        <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('upload2').submit()">全部导出</button>
+        <select style="margin-left: 400px;height: 28px;border-radius: 4px" id="chartCondition">
+            <option value="null"></option>
+            <option value="birthday5">出生日期(5年)</option>
+            <option value="birthday10">出生日期(10年)</option>
+            <option value="nation">民族</option>
+            <option value="politicalStatus">政治面貌</option>
+            <option value="staffStatus">教职工类别</option>
+            <option value="employPosition">聘任职务</option>
+            <option value="outparttraining">党外人士培养类别</option>
+        </select>
+        <button style="border-left: 20px" class="btn btn-primary btn-sm w_100" data-toggle="modal" data-target="#chart" onclick="analyse()">分析</button>
+    </div>
+
+    <div style="z-index: 100000000" class="modal fade"  id="chart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
             &times;
         </button>
@@ -268,7 +272,7 @@
     </form>
 </div>
 </body>
-<link href="../../../resources/css/select2.min.css" rel="stylesheet" />
+<link href="../../../resources/css/select22.min.css" rel="stylesheet" />
 <script src="../../../resources/js/select2.min.js"></script>
 <script  src="../../../resources/jquery.tmpl.min.js"></script>
 <script src="../../../resources/js/data.js"></script>
@@ -482,6 +486,7 @@
         }
     }
     function analyse() {
+        var s=$("#sex")
         document.getElementById("chart").style.display="block";
         var params={};
         evaluate(params);

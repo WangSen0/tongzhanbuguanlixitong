@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="dataSourceStorageLocal">
-    <data-source name="db_school@localhost" uuid="e8b5c4b9-a197-4784-8bd8-b090741f3ed0">
-      <secret-storage>master_key</secret-storage>
-      <user-name>root</user-name>
-    </data-source>
-  </component>
-</project>

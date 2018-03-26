@@ -42,7 +42,7 @@
             </div>
         </div>
     </div>
-    <div style="width:98%;margin: 10px auto">
+    <div style="width:98%;margin: 10px auto;min-height:300px">
         <table style="font-size: 14px" id="table" class="table table-hover table-bordered tbb">
             <thead>
             <th>查看</th>

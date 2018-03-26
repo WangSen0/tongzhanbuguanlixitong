@@ -31,7 +31,7 @@
         <a  href="/information/updatePerson"><button class="btn-default btn_100">人员更新</button><br/></a>
         <a  href="/user/userList/1"><button class="btn-default btn_100">用户管理</button><br/></a>
     </div>
-    <div style="width: 1000px;height: 420px;">
+    <div style="width: 1000px;height: 600px;">
         <span style="color: red">${message}</span>
             <div style="width: 100%;margin-top: 50px;margin-left: 300px;">
                 <h3 >

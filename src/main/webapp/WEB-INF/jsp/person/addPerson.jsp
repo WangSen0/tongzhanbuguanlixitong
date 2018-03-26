@@ -36,7 +36,7 @@
 
         <%--<i style="color: red">${param.message}</i>--%>
         <jsp:include page="../common/head.jsp" flush="true"></jsp:include>
-        <form id="addSubmit" style="padding-left: 15px" class="form-horizontal J_searchForm" action="/person/addPerson" method="post">
+        <form id="addSubmit" style="padding-left: 15px;min-height:400px" class="form-horizontal J_searchForm" action="/person/addPerson" method="post">
             <%--简介--%>
             <jsp:include page="../common/main.jsp" flush="true"/>
             <%--民主党派职务--%>
