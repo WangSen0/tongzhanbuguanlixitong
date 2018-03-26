@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.mapper.ReportMapper">
+    <resultMap id="reportResult" type="ssm.entity.Report">
+        <id property="id" column="id"/>
+        <result property="reportId" column="report_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="reportTitle" column="report_title"/>
+        <result property="reportBelong" column="report_belong"/>
+    </resultMap>
+    <select id="listAllReport" resultMap="reportResult">
+        select * FROM t_report
+    </select>
+    <select id="queryByReportId" parameterType="java.lang.Integer" resultMap="reportResult">
+        select * from t_report WHERE id=#{id};
+    </select>
+    <select id="queryByPersonId" parameterType="java.lang.String" resultMap="reportResult">
+        SELECT * FROM t_report WHERE person_id=#{id}
+    </select>
+    <insert id="insertReport" parameterType="ssm.entity.Report">
+        insert into t_report (report_id,person_id, report_title, report_belong) values (#{report.reportId},#{report.personId},#{report.reportTitle},#{report.reportBelong});
+    </insert>
+    <delete id="deleteByReportId" parameterType="java.lang.Integer">
+        DELETE FROM t_report WHERE id=#{id}
+    </delete>
+    <delete id="deleteByPersonId" parameterType="java.lang.String">
+        DELETE FROM t_report WHERE person_id=#{personId}
+    </delete>
+    <update id="updateReport" parameterType="ssm.entity.Report">
+        UPDATE t_report SET report_id=#{report.reportId},report_title=#{report.reportTitle},report_belong=#{report.reportBelong} WHERE id=#{report.id}
+    </update>
+</mapper>

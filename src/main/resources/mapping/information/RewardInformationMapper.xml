@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.mapper.information.RewardInformationMapper">
+    <resultMap id="rewardResult" type="ssm.entity.Reward">
+        <id property="id" column="id"/>
+        <result property="rewardId" column="reward_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="rewardName" column="reward_name"/>
+        <result property="rewardAchievement" column="reward_achievement"/>
+    </resultMap>
+    <select id="queryByPersonId" parameterType="java.lang.String" resultMap="rewardResult">
+        SELECT * FROM b_reward WHERE person_id=#{personId}
+    </select>
+</mapper>

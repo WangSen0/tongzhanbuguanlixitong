@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.mapper.DeputypeopleMapper">
+    <resultMap id="deputypeopleResult" type="ssm.entity.Deputypeople">
+        <id property="deputypeopleId" column="deputypeople_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="deputypeopleCountry" column="deputypeople_country"/>
+        <result property="deputypeopleProvince" column="deputypeople_province"/>
+        <result property="deputypeopleCity" column="deputypeople_city"/>
+        <result property="deputypeopleCounty" column="deputypeople_county"/>
+        <result property="deputypeopleTimes" column="deputypeople_times"/>
+        <result property="deputypeopleStartTime" column="deputypeople_start_time"/>
+        <result property="deputypeopleEndTime" column="deputypeople_end_time"/>
+    </resultMap>
+    <select id="listAllDeputypeople" resultMap="deputypeopleResult">
+        select * FROM t_deputypeople
+    </select>
+    <select id="queryByDeputypeopleId" parameterType="java.lang.Integer"  resultMap="deputypeopleResult">
+        SELECT * FROM t_deputypeople WHERE deputypeople_id=#{id}
+    </select>
+    <select id="queryByPersonId" parameterType="java.lang.String" resultMap="deputypeopleResult">
+        SELECT * FROM  t_deputypeople WHERE deputypeople_id=#{id}
+    </select>
+    <insert id="insertDeputypeople" parameterType="ssm.entity.Deputypeople">
+        INSERT INTO t_deputypeople
+        (person_id,deputypeople_country,deputypeople_province,deputypeople_city,deputypeople_county,deputypeople_times,deputypeople_start_time,deputypeople_end_time)
+        VALUES (#{deputypeople.personId},#{deputypeople.deputypeopleCountry},#{deputypeople.deputypeopleProvince},#{deputypeople.deputypeopleCity},#{deputypeople.deputypeopleCounty},
+        #{deputypeople.deputypeopleTimes},#{deputypeople.deputypeopleStartTime},#{deputypeople.deputypeopleEndTime})
+    </insert>
+    <delete id="deleteByDeputypeopleId" parameterType="java.lang.Integer">
+        DELETE FROM t_deputypeople WHERE deputypeople_id=#{id}
+    </delete>
+    <delete id="deleteByPersonId" parameterType="java.lang.String">
+        DELETE FROM t_deputypeople WHERE person_id=#{personId}
+    </delete>
+    <update id="updateDeputypeople" parameterType="ssm.entity.Deputypeople">
+        UPDATE t_deputypeople SET deputypeople_country=#{deputypeople.deputypeopleCountry},deputypeople_province=#{deputypeople.deputypeopleProvince},deputypeople_city=#{deputypeople.deputypeopleCity},
+        deputypeople_country=#{deputypeople.deputypeopleCounty}, deputypeople_times=#{deputypeople.deputypeopleTimes},deputypeople_start_time=#{deputypeople.deputypeopleStartTime},
+        deputypeople_end_time=#{deputypeople.deputypeopleEndTime} WHERE deputypeople_id=#{deputypeople.personId}
+    </update>
+</mapper>

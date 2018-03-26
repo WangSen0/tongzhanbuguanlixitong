@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.mapper.information.PaperInformationMapper">
+    <resultMap id="paperResult" type="ssm.entity.Paper">
+        <id property="id" column="id"/>
+        <result property="paperId" column="paper_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="paperTitle" column="paper_title"/>
+        <result property="paperPublications" column="paper_publications"/>
+        <result property="paperLevel" column="paper_level"/>
+    </resultMap>
+    <select id="queryByPersonId" parameterType="java.lang.String" resultMap="paperResult">
+        SELECT * FROM b_paper WHERE person_id=#{personId}
+    </select>
+</mapper>

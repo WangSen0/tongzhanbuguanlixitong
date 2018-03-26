@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.mapper.TrainingMapper">
+    <resultMap id="trainingResult" type="ssm.entity.Training">
+        <id property="trainingId" column="training_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="trainingPlace" column="training_place"/>
+        <result property="trainingCompany" column="training_company"/>
+        <result property="trainingContent" column="training_content"/>
+        <result property="trainingStartTime" column="training_start_time"/>
+        <result property="trainingEndTime" column="training_end_time"/>
+    </resultMap>
+    <select id="listAllTraining" resultMap="trainingResult">
+        select * FROM t_training
+    </select>
+    <select id="queryByTrainingId" parameterType="java.lang.Integer" resultMap="trainingResult">
+        SELECT * FROM t_training WHERE training_id=#{id}
+    </select>
+    <select id="queryByPersonId" parameterType="java.lang.String" resultMap="trainingResult">
+        SELECT * FROM t_training WHERE person_id=#{id}
+    </select>
+    <insert id="insertTraining" parameterType="ssm.entity.Training">
+        insert into t_training (person_id, training_place, training_company, training_content, training_start_time, training_end_time)
+        values (#{training.personId},#{training.trainingPlace},#{training.trainingCompany},#{training.trainingContent},#{training.trainingStartTime},#{training.trainingEndTime});
+    </insert>
+    <delete id="deleteByTrainingId" parameterType="java.lang.Integer">
+        DELETE FROM t_training WHERE training_id=#{id}
+    </delete>
+    <delete id="deleteByPersonId" parameterType="java.lang.String">
+        DELETE FROM t_training WHERE person_id=#{personId}
+    </delete>
+    <update id="updateTraining" parameterType="ssm.entity.Training">
+        UPDATE t_training SET training_place=#{training.trainingPlace},training_company=#{training.trainingCompany},training_content=#{training.trainingContent},training_start_time=#{training.trainingStartTime},
+        training_end_time=#{training.trainingEndTime} WHERE training_id=#{training.trainingId}
+    </update>
+</mapper>

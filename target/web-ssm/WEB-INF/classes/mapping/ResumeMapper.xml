@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.mapper.ResumeMapper">
+    <resultMap id="resumeResult" type="ssm.entity.Resume">
+        <id property="resumeId" column="resume_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="resumeStartTime" column="resume_start_time"/>
+        <result property="resumeEndTime" column="resume_end_time"/>
+        <result property="resumeContent" column="resume_content"/>
+    </resultMap>
+    <select id="listAllResume" resultMap="resumeResult">
+        select * FROM t_resume
+    </select>
+    <select id="queryByResumeId" parameterType="java.lang.Integer" resultMap="resumeResult">
+        SELECT * FROM t_resume WHERE resume_id=#{id}
+    </select>
+    <select id="queryByPersonId" parameterType="java.lang.String" resultMap="resumeResult">
+        SELECT * FROM t_resume WHERE person_id=#{id}
+    </select>
+    <insert id="insertResume" parameterType="ssm.entity.Resume">
+        insert into t_resume (person_id, resume_start_time, resume_end_time, resume_content) values (#{resume.personId},#{resume.resumeStartTime},#{resume.resumeEndTime},#{resume.resumeContent});
+    </insert>
+    <delete id="deleteByResumeId" parameterType="java.lang.Integer">
+        DELETE FROM t_resume WHERE resume_id=#{id}
+    </delete>
+    <delete id="deleteByPersonId" parameterType="java.lang.String">
+        DELETE FROM t_resume WHERE person_id=#{personId}
+    </delete>
+    <update id="updateResume" parameterType="ssm.entity.Resume">
+        UPDATE t_resume SET resume_start_time=#{resume.resumeStartTime},resume_end_time=#{resume.resumeEndTime},resume_content=#{resume.resumeContent} WHERE resume_id=#{resume.resumeId}
+    </update>
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.mapper.ParttimejobMapper">
+    <resultMap id="parttimejobResult" type="ssm.entity.Parttimejob">
+        <id property="parttimejobId" column="parttimejob_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="parttimejobContent" column="parttimejob_content"/>
+    </resultMap>
+    <select id="listAllParttimejob" resultMap="parttimejobResult">
+        select * FROM t_parttimejob
+    </select>
+    <select id="queryByParttimejobId" parameterType="java.lang.Integer" resultMap="parttimejobResult">
+        SELECT * FROM t_parttimejob WHERE parttimejob_id=#{id}
+    </select>
+    <select id="queryByPersonId" parameterType="java.lang.String" resultMap="parttimejobResult">
+        SELECT * FROM t_parttimejob WHERE person_id=#{id}
+    </select>
+    <insert id="insertParttimejob" parameterType="ssm.entity.Parttimejob">
+        INSERT INTO t_parttimejob(person_id,parttimejob_content)VALUES (#{parttimejob.personId},#{parttimejob.parttimejobContent})
+    </insert>
+    <delete id="deleteByParttimejobId" parameterType="java.lang.Integer">
+        DELETE FROM t_parttimejob WHERE parttimejob_id=#{id}
+    </delete>
+    <delete id="deleteByPersonId" parameterType="java.lang.String">
+        DELETE FROM t_parttimejob WHERE person_id=#{personId}
+    </delete>
+    <update id="updateParttimejob" parameterType="ssm.entity.Parttimejob">
+        UPDATE t_parttimejob SET parttimejob_content=#{parttimejob.parttimejobContent} WHERE parttimejob_id=#{parttimejob.parttimejobId}
+    </update>
+</mapper>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.mapper.PaperMapper">
+    <resultMap id="paperResult" type="ssm.entity.Paper">
+        <id property="id" column="id"/>
+        <result property="paperId" column="paper_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="paperTitle" column="paper_title"/>
+        <result property="paperPublications" column="paper_publications"/>
+        <result property="paperLevel" column="paper_level"/>
+    </resultMap>
+    <select id="listAllPaper" resultMap="paperResult">
+        select * FROM t_paper
+    </select>
+    <select id="queryByPaperId" parameterType="java.lang.Integer" resultMap="paperResult">
+        select * FROM t_paper WHERE id=#{id}
+    </select>
+    <select id="queryByPersonId" parameterType="java.lang.String" resultMap="paperResult">
+        SELECT * FROM t_paper WHERE person_id=#{id}
+    </select>
+    <insert id="insertPaper" parameterType="ssm.entity.Paper">
+        INSERT INTO t_paper(paper_id,person_id,paper_title,paper_publications,paper_level) VALUES (#{paper.paperId},#{paper.personId},#{paper.paperTitle},#{paper.paperPublications},#{paper.paperLevel})
+    </insert>
+    <delete id="deleteByPaperId" parameterType="java.lang.Integer">
+        DELETE FROM t_paper WHERE id=#{id}
+    </delete>
+    <delete id="deleteByPersonId" parameterType="java.lang.String">
+        DELETE FROM t_paper WHERE person_id=#{personId}
+    </delete>
+    <update id="updatePaper" parameterType="ssm.entity.Paper">
+        UPDATE t_paper SET paper_id=#{paper.paperId},paper_title=#{paper.paperTitle},paper_publications=#{paper.paperPublications},paper_level=#{paper.paperLevel} WHERE id=#{paper.id}
+    </update>
+</mapper>

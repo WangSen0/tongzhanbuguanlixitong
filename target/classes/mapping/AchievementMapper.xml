@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.mapper.AchievementMapper">
+    <resultMap id="achievementResult" type="ssm.entity.Achievement">
+        <id property="achievementId" column="achievement_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="achievementContent" column="achievement_content"/>
+    </resultMap>
+    <select id="listAllAchievement" resultMap="achievementResult">
+        select * FROM t_achievement
+    </select>
+    <select id="queryByAchievementId" parameterType="java.lang.Integer" resultMap="achievementResult">
+        SELECT * FROM t_achievement WHERE achievement_id=#{id}
+    </select>
+    <select id="queryByPersonId" parameterType="java.lang.String" resultMap="achievementResult">
+        SELECT * FROM t_achievement where person_id=#{id}
+    </select>
+    <update id="updateAchievement">
+        update t_achievement set achievement_content=${achievement.achievementContent} where achievement_id=#{achievement.achievementId}
+    </update>
+    <delete id="deleteByAchievementId">
+        DELETE FROM t_achievement where achievement_id=#{id}
+    </delete>
+    <delete id="deleteByPersonId" parameterType="java.lang.String">
+        DELETE FROM t_achievement WHERE person_id=#{personId}
+    </delete>
+    <insert id="insertAchievement">
+        INSERT INTO t_achievement (person_id, achievement_content) VALUES (#{achievement.personId},#{achievement.achievementContent})
+    </insert>
+</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.mapper.PoliticalconsultMapper">
+    <resultMap id="politicalconsultResult" type="ssm.entity.Politicalconsult">
+        <id property="politicalconsultId" column="politicalconsult_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="politicalconsultCountry" column="politicalconsult_country"/>
+        <result property="politicalconsultProvince" column="politicalconsult_province"/>
+        <result property="politicalconsultCity" column="politicalconsult_city"/>
+        <result property="politicalconsultCounty" column="politicalconsult_county"/>
+        <result property="politicalconsultTimes" column="politicalconsult_times"/>
+        <result property="politicalconsultStartTime" column="politicalconsult_start_time"/>
+        <result property="politicalconsultEndTime" column="politicalconsult_end_time"/>
+    </resultMap>
+    <select id="listAllPoliticalconsult" resultMap="politicalconsultResult">
+        select * FROM t_politicalconsult
+    </select>
+    <select id="queryByPoliticalconsultId" parameterType="java.lang.Integer" resultMap="politicalconsultResult">
+        SELECT * FROM t_politicalconsult WHERE politicalconsult_id=#{id}
+    </select>
+    <select id="queryByPersonId" parameterType="java.lang.String" resultMap="politicalconsultResult">
+        SELECT * FROM t_politicalconsult WHERE person_id=#{id}
+    </select>
+    <insert id="insertPoliticalconsult" parameterType="ssm.entity.Politicalconsult">
+        INSERT INTO t_politicalconsult(person_id,politicalconsult_country,politicalconsult_province,politicalconsult_city,politicalconsult_county,politicalconsult_times,politicalconsult_start_time,politicalconsult_end_time)
+        VALUES (#{politicalconsult.personId},#{politicalconsult.politicalconsultCountry},#{politicalconsult.politicalconsultProvince},#{politicalconsult.politicalconsultCity},#{politicalconsult.politicalconsultCounty},
+        #{politicalconsult.politicalconsultTimes},#{politicalconsult.politicalconsultStartTime},#{politicalconsult.politicalconsultEndTime})
+    </insert>
+    <delete id="deleteByPoliticalconsultId" parameterType="java.lang.Integer">
+        DELETE  FROM t_politicalconsult WHERE politicalconsult_id=#{id}
+    </delete>
+    <delete id="deleteByPersonId" parameterType="java.lang.String">
+        DELETE FROM t_politicalconsult WHERE person_id=#{personId}
+    </delete>
+    <update id="updatePoliticalconsult" parameterType="ssm.entity.Politicalconsult">
+        UPDATE t_politicalconsult SET politicalconsult_country=#{politicalconsult.politicalconsultCountry},politicalconsult_province=#{politicalconsult.politicalconsultProvince},
+        politicalconsult_city=#{politicalconsult.politicalconsultCity},politicalconsult_county=#{politicalconsult.politicalconsultCounty},politicalconsult_times=#{politicalconsult.politicalconsultTimes},
+        politicalconsult_start_time=#{politicalconsult.politicalconsultStartTime},politicalconsult_end_time= #{politicalconsult.politicalconsultEndTime}
+        WHERE politicalconsult_id= #{politicalconsult.politicalconsultId}
+    </update>
+</mapper>

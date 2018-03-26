@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.mapper.information.WorksInformationMapper">
+    <resultMap id="worksResult" type="ssm.entity.Works">
+        <id property="id" column="id"/>
+        <result property="worksId" column="works_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="worksTitle" column="works_title"/>
+        <result property="worksBelong" column="works_belong"/>
+    </resultMap>
+    <select id="queryByPersonId" parameterType="java.lang.String" resultMap="worksResult">
+        SELECT * FROM b_works WHERE person_id=#{personId}
+    </select>
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.mapper.RewardMapper">
+    <resultMap id="rewardResult" type="ssm.entity.Reward">
+        <id property="id" column="id"/>
+        <result property="rewardId" column="reward_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="rewardName" column="reward_name"/>
+        <result property="rewardAchievement" column="reward_achievement"/>
+    </resultMap>
+    <select id="listAllReward" resultMap="rewardResult">
+        select * FROM t_reward
+    </select>
+    <select id="queryByRewardId" parameterType="java.lang.Integer" resultMap="rewardResult">
+        SELECT * FROM t_reward WHERE id=#{id}
+    </select>
+    <select id="queryByPersonId" parameterType="java.lang.String" resultMap="rewardResult">
+        SELECT * FROM t_reward WHERE person_id=#{id}
+    </select>
+    <insert id="insertReward" parameterType="ssm.entity.Reward">
+        insert into t_reward (reward_id,person_id, reward_name, reward_achievement) values (#{reward.rewardId},#{reward.personId},#{reward.rewardName},#{reward.rewardAchievement});
+    </insert>
+    <delete id="deleteByRewardId" parameterType="java.lang.Integer">
+        DELETE FROM t_reward WHERE id=#{id}
+    </delete>
+    <delete id="deleteByPersonId" parameterType="java.lang.String">
+        DELETE FROM t_reward WHERE person_id=#{personId}
+    </delete>
+    <update id="updateReward" parameterType="ssm.entity.Reward">
+        UPDATE t_reward SET reward_id=#{reward.rewardId},reward_name=#{reward.rewardName},reward_achievement=#{reward.rewardAchievement} WHERE id=#{reward.id}
+    </update>
+</mapper>

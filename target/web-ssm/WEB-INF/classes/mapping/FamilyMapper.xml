@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.mapper.FamilyMapper">
+    <resultMap id="familyResult" type="ssm.entity.Family">
+        <id property="familyId" column="family_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="familyRelation" column="family_relation"/>
+        <result property="familyName" column="family_name"/>
+        <result property="familyBirthday" column="family_birthday"/>
+        <result property="familyPoliticalStatus" column="family_political_status"/>
+        <result property="familyCompany" column="family_company"/>
+        <result property="familyPosition" column="family_position"/>
+    </resultMap>
+    <select id="listAllFamily" resultMap="familyResult">
+        select * FROM t_family
+    </select>
+    <select id="queryByFamilyId" parameterType="java.lang.Integer" resultMap="familyResult">
+        SELECT * FROM t_family WHERE family_id=#{id}
+    </select>
+    <select id="queryByPersonId" parameterType="java.lang.String" resultMap="familyResult">
+        SELECT * FROM t_family WHERE person_id=#{id}
+    </select>
+    <insert id="insertFamily" parameterType="ssm.entity.Family">
+        INSERT INTO t_family (person_id,family_relation,family_name,family_birthday,family_political_status,family_company,family_position)
+        VALUES (#{family.personId},#{family.familyRelation},#{family.familyName},#{family.familyBirthday},#{family.familyPoliticalStatus},#{family.familyCompany},#{family.familyPosition})
+    </insert>
+    <delete id="deleteByFamilyId" parameterType="java.lang.Integer">
+          DELETE FROM t_family WHERE family_id=#{id}
+    </delete>
+    <delete id="deleteByPersonId" parameterType="java.lang.String">
+        DELETE FROM t_family WHERE person_id=#{personId}
+    </delete>
+    <update id="updateFamily" parameterType="ssm.entity.Family">
+        UPDATE t_family SET family_relation=#{family.familyRelation},family_name=#{family.familyName},family_birthday=#{family.familyBirthday},family_political_status=#{family.familyPoliticalStatus},family_company=#{family.familyCompany},
+        family_position=#{family.familyPosition} where family_id=#{family.familyId}
+    </update>
+</mapper>

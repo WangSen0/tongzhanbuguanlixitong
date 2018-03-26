@@ -9,14 +9,16 @@ import java.util.List;
  * 职责
  *
  * @author wangsen
- * @time 2017/9/14
+ * @time 2017/9/26
  */
-public interface UserService  {
-    public int newUser(User user)throws Exception;
-    public int delById(int id)throws Exception;
-    public List<User> listAllPerson()throws Exception;
-    public User queryById(int id)throws Exception;
-    public int update(User user)throws Exception;
-    public User queryByNameAndPassword(String name,String password) throws Exception;
-    public User queryByName(String name)throws Exception;
+public interface UserService {
+    public List<User> listAllUser()throws Exception;
+    public User queryByUserId(Integer id)throws Exception;
+    public User queryByNameAndPassword(User user)throws Exception;
+    public int insertUser(User user)throws Exception;
+    public int deleteByUserId(Integer id)throws Exception;
+    public int updateUser(User user) throws Exception;
+    public List<User> queryByLimit(String userName,Integer offerset,Integer rows)throws Exception;
+    public User queryByUserName(String userName)throws Exception;
+    public int updatePassword(String userName,String password)throws Exception;
 }

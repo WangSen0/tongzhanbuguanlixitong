@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.mapper.PhenomMapper">
+    <resultMap id="phenomResult" type="ssm.entity.Phenom">
+        <id property="phenomId" column="phenom_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="phenomTitle" column="phenom_title"/>
+        <result property="phenomStartTime" column="phenom_start_time"/>
+        <result property="phenomEndTime" column="phenom_end_time"/>
+    </resultMap>
+    <select id="listAllPhenom" resultMap="phenomResult">
+        select * FROM t_phenom
+    </select>
+    <select id="queryByPhenomId" parameterType="java.lang.Integer" resultMap="phenomResult">
+        SELECT * FROM t_phenom WHERE phenom_id=#{id}
+    </select>
+    <select id="queryByPersonId" parameterType="java.lang.String" resultMap="phenomResult">
+        SELECT * FROM t_phenom WHERE person_id=#{id}
+    </select>
+    <insert id="insertPhenom" parameterType="ssm.entity.Phenom">
+        INSERT INTO t_phenom (person_id,phenom_title,phenom_start_time,phenom_end_time)VALUES (#{phenom.personId},#{phenom.phenomTitle},#{phenom.phenomStartTime},#{phenom.phenomEndTime})
+    </insert>
+    <delete id="deleteByPhenomId" parameterType="java.lang.Integer">
+        DELETE FROM t_phenom WHERE phenom_id=#{id}
+    </delete>
+    <delete id="deleteByPersonId" parameterType="java.lang.String">
+        DELETE FROM t_phenom WHERE person_id=#{personId}
+    </delete>
+    <update id="updatePhenom" parameterType="ssm.entity.Phenom">
+        UPDATE t_phenom SET phenom_title=#{phenom.phenomTitle},phenom_start_time=#{phenom.phenomStartTime},phenom_end_time=#{phenom.phenomEndTime} WHERE phenom_id=#{phenom.phenomId}
+    </update>
+    <select id="queryPhenomTitle" resultType="java.lang.String">
+        SELECT DISTINCT(phenom_title) FROM t_phenom WHERE phenom_title!=''
+    </select>
+</mapper>

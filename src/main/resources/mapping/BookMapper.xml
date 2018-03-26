@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.mapper.BookMapper">
+    <resultMap id="bookResult" type="ssm.entity.Book">
+        <id property="id" column="id"/>
+        <result property="bookId" column="book_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="bookTitle" column="book_title"/>
+        <result property="bookPublish" column="book_publish"/>
+    </resultMap>
+    <select id="listAllBook" resultMap="bookResult">
+        select * FROM t_book
+    </select>
+    <select id="queryByBookId" parameterType="java.lang.Integer" resultMap="bookResult">
+        SELECT * FROM t_book WHERE id=#{id}
+    </select>
+    <select id="queryByPersonId" parameterType="java.lang.String" resultMap="bookResult">
+        SELECT * FROM t_book WHERE person_id=#{id}
+    </select>
+    <insert id="insertBook" parameterType="ssm.entity.Book">
+        INSERT INTO t_book (book_id,person_id,book_title,book_publish) VALUES (#{book.bookId},#{book.personId},#{book.bookTitle},#{book.bookPublish})
+    </insert>
+    <delete id="deleteByBookId" parameterType="java.lang.Integer">
+      DELETE FROM t_book WHERE id=#{id}
+    </delete>
+    <delete id="deleteByPersonId" parameterType="java.lang.String">
+        DELETE FROM t_book WHERE person_id=#{personId}
+    </delete>
+    <update id="updateBook" parameterType="ssm.entity.Book">
+      UPDATE t_book SET book_id=#{book.bookId},book_title=#{book.bookTitle},book_publish=#{book.bookPublish} WHERE id=#{book.id}
+    </update>
+</mapper>

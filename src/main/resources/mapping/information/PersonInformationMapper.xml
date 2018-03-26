@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.mapper.information.PersonInformationMapper">
+    <resultMap id="personResult" type="ssm.entity.Person">
+        <id property="personId" column="person_id"/>
+        <result property="name" column="name"/>
+        <result property="sex" column="sex"/>
+        <result property="birthday" column="birthday"/>
+        <result property="nationality" column="nationality"/>
+        <result property="placeOfBirth" column="place_of_birth"/>
+        <result property="nation" column="nation"/>
+        <result property="maritalStatus" column="marital_status"/>
+        <result property="country" column="country"/>
+        <result property="gatq" column="gatq"/>
+        <result property="politicalStatus" column="political_status"/>
+
+        <result property="politicalTime" column="political_time"/>
+        <result property="secondPoliticalStatus" column="second_political_status"/>
+        <result property="secondTime" column="scond_time"/>
+        <result property="enterschoolTime" column="enterschool_time"/>
+        <result property="graduationSchool" column="graduation_school"/>
+        <result property="highestEducation" column="highest_education"/>
+        <result property="highestDegree" column="highest_degree"/>
+        <result property="professional" column="professional"/>
+        <result property="fullTimeEducation" column="full_time_education"/>
+        <result property="fullTimeEducationSchool" column="full_time_education_school"/>
+
+        <result property="fullTimeEducationProfessional" column="full_time_education_professional"/>
+        <result property="partTimeEducation" column="part_time_education"/>
+        <result property="partTimeEducationSchool" column="part_time_education_school"/>
+        <result property="partTimeEducationProfessional" column="part_time_education_professional"/>
+        <result property="workScience" column="work_science"/>
+        <result property="researchArea" column="research_area"/>
+        <result property="residencePermitAbroadStatus" column="residence_permit_abroad_status"/>
+        <result property="residencePermitAbroadTime" column="residence_permit_abroad_time"/>
+        <result property="startworkTime" column="startwork_time"/>
+        <result property="staffStatus" column="staff_status"/>
+
+        <result property="currentStatus" column="current_status"/>
+        <result property="currentStatusTime" column="current_status_time"/>
+        <result property="healthStatus" column="health_status"/>
+        <result property="academyLocation" column="academy_location"/>
+        <result property="departmentLocation" column="department_location"/>
+        <result property="positionLevel" column="position_level"/>
+        <result property="employPositionTime" column="employ_position_time"/>
+        <result property="employPosition" column="employ_position"/>
+        <result property="stationLevel" column="station_level"/>
+        <result property="stationLevelName" column="station_level_name"/>
+
+        <result property="stationLevelTime" column="station_level_time"/>
+        <result property="politicalPosition" column="political_position"/>
+        <result property="politicalPositionTime" column="political_position_time"/>
+        <result property="staffLevel" column="staff_level"/>
+        <result property="staffLevelTime" column="staff_level_time"/>
+        <result property="speciality" column="speciality"/>
+        <result property="workPhone" column="work_phone"/>
+        <result property="familyPhone" column="family_phone"/>
+        <result property="phone" column="phone"/>
+        <result property="email" column="email"/>
+
+        <result property="contactAddress" column="contact_address"/>
+        <result property="zipcode" column="zipcode"/>
+        <result property="fax" column="fax"/>
+        <result property="idcard" column="idcard"/>
+        <result property="outparttraining" column="outparttraining"/>
+        <result property="addStatus" column="addStatus"/>
+
+        <collection property="bookList" column="person_id"   ofType="ssm.entity.Book" select="queryBookByPersonId"/>
+        <collection property="paperList" column="person_id" ofType="ssm.entity.Paper" select="queryPaperByPersonId"/>
+        <collection property="patentList" column="person_id" ofType="ssm.entity.Patent" select="queryPatentByPersonId"/>
+        <collection property="projectList" column="person_id" ofType="ssm.entity.Project" select="queryProjectByPersonId"/>
+        <collection property="reportList" column="person_id" ofType="ssm.entity.Report" select="queryReportByPersonId"/>
+        <collection property="rewardList" column="person_id" ofType="ssm.entity.Reward" select="queryRewardByPersonId"/>
+        <collection property="worksList" column="person_id" ofType="ssm.entity.Works" select="queryWorksByPersonId"/>
+    </resultMap>
+    <resultMap id="bookResult" type="ssm.entity.Book">
+        <id property="id" column="id"/>
+        <result property="bookId" column="book_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="bookTitle" column="book_title"/>
+        <result property="bookPublish" column="book_publish"/>
+    </resultMap>
+    <resultMap id="paperResult" type="ssm.entity.Paper">
+        <id property="id" column="id"/>
+        <result property="paperId" column="paper_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="paperTitle" column="paper_title"/>
+        <result property="paperPublications" column="paper_publications"/>
+        <result property="paperLevel" column="paper_level"/>
+    </resultMap>
+    <resultMap id="patentResult" type="ssm.entity.Patent">
+        <id property="id" column="id"/>
+        <result property="patentId" column="patent_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="patentTitle" column="patent_title"/>
+        <result property="patentType" column="patent_type"/>
+        <result property="patentAuthor" column="patent_author"/>
+    </resultMap>
+    <resultMap id="projectResult" type="ssm.entity.Project">
+        <id property="id" column="id"/>
+        <result property="projectId" column="project_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="projectTitle" column="project_title"/>
+        <result property="projectLevel" column="project_level"/>
+        <result property="projectOutlay" column="project_outlay"/>
+    </resultMap>
+    <resultMap id="reportResult" type="ssm.entity.Report">
+        <id property="id" column="id"/>
+        <result property="reportId" column="report_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="reportTitle" column="report_title"/>
+        <result property="reportBelong" column="report_belong"/>
+    </resultMap>
+    <resultMap id="rewardResult" type="ssm.entity.Reward">
+        <id property="id" column="id"/>
+        <result property="rewardId" column="reward_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="rewardName" column="reward_name"/>
+        <result property="rewardAchievement" column="reward_achievement"/>
+    </resultMap>
+    <resultMap id="worksResult" type="ssm.entity.Works">
+        <id property="id" column="id"/>
+        <result property="worksId" column="works_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="worksTitle" column="works_title"/>
+        <result property="worksBelong" column="works_belong"/>
+    </resultMap>
+
+    <select id="queryBookByPersonId" parameterType="java.lang.String" resultMap="bookResult">
+        SELECT * FROM b_book WHERE person_id=#{personId}
+    </select>
+    <select id="queryPaperByPersonId" parameterType="java.lang.String" resultMap="paperResult">
+        SELECT * FROM b_paper WHERE person_id=#{personId}
+    </select>
+    <select id="queryPatentByPersonId" parameterType="java.lang.String" resultMap="patentResult">
+        SELECT * FROM b_patent WHERE person_id=#{personId}
+    </select>
+    <select id="queryProjectByPersonId" parameterType="java.lang.String" resultMap="projectResult">
+        SELECT * FROM b_project WHERE person_id=#{personId}
+    </select>
+    <select id="queryReportByPersonId" parameterType="java.lang.String" resultMap="reportResult">
+        SELECT * FROM b_report WHERE person_id=#{personId}
+    </select>
+    <select id="queryRewardByPersonId" parameterType="java.lang.String" resultMap="rewardResult">
+        SELECT * FROM b_reward WHERE person_id=#{personId}
+    </select>
+    <select id="queryWorksByPersonId" parameterType="java.lang.String" resultMap="worksResult">
+        SELECT * FROM b_works WHERE person_id=#{personId}
+    </select>
+
+    <select id="queryByPersonId" parameterType="java.lang.String" resultMap="personResult">
+        SELECT * FROM b_person WHERE person_id=#{personId}
+    </select>
+    <select id="queryByPersonName" parameterType="java.lang.String" resultMap="personResult">
+        SELECT * FROM b_person WHERE name=#{name}
+    </select>
+    <select id="queryByCondition" parameterType="ssm.entity.InformationCondition" resultMap="personResult">
+        SELECT * FROM v_person
+        WHERE 1=1
+        <include refid="condition"></include>
+        LIMIT #{offerset},#{rows}
+    </select>
+    <select id="queryCountByCondition" parameterType="ssm.entity.InformationCondition" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM v_person
+        WHERE 1=1
+        <include refid="condition"></include>
+        LIMIT #{offerset},#{rows}
+    </select>
+    <sql id="condition">
+        <if test="condition.personId!=null and condition.personId!=''">AND  v_person.person_id=#{condition.personId}</if>
+        <if test="condition.name!=null and condition.name!=''">AND name=#{condition.name}</if>
+        <if test="condition.politicalStatus!=null and condition.politicalStatus!=''">AND political_status=#{condition.politicalStatus}</if>
+        <if test="condition.currentStatus!=null and condition.currentStatus!=''">AND current_status=#{condition.currentStatus}</if>
+        <if test="condition.nation!=null and condition.nation!=''">AND nation=#{condition.nation}</if>
+        <if test="condition.birthdayStart!=null and condition.birthdayStart!=''">AND birthday &gt; #{condition.birthdayStart}</if>
+        <if test="condition.birthdayEnd!=null and condition.birthdayEnd!=''">AND birthday &lt; #{condition.birthdayEnd}</if>
+        <if test="condition.addStatus!=null and condition.addStatus!=''">AND addStatus=#{condition.addStatus}</if>
+    </sql>
+</mapper>

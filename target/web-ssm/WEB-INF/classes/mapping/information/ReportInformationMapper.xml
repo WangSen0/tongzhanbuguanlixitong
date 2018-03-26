@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.mapper.information.ReportInformationMapper">
+    <resultMap id="reportResult" type="ssm.entity.Report">
+        <id property="id" column="id"/>
+        <result property="reportId" column="report_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="reportTitle" column="report_title"/>
+        <result property="reportBelong" column="report_belong"/>
+    </resultMap>
+    <select id="queryByPersonId" parameterType="java.lang.String" resultMap="reportResult">
+        SELECT * FROM b_report WHERE person_id=#{personId}
+    </select>
+</mapper>

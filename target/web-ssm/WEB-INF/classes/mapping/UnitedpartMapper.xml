@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.mapper.UnitedpartMapper">
+    <resultMap id="unitedpartResult" type="ssm.entity.Unitedpart">
+        <id property="unitedpartId" column="unitedpart_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="unitedpartCountry" column="unitedpart_country"/>
+        <result property="unitedpartProvince" column="unitedpart_province"/>
+        <result property="unitedpartCity" column="unitedpart_city"/>
+        <result property="unitedpartCounty" column="unitedpart_county"/>
+
+        <result property="unitedpartSchool" column="unitedpart_school"/>
+        <result property="unitedpartTimes" column="unitedpart_times"/>
+        <result property="unitedpartPosition" column="unitedpart_position"/>
+        <result property="unitedpartStartTime" column="unitedpart_start_time"/>
+        <result property="unitedpartEndTime" column="unitedpart_end_time"/>
+    </resultMap>
+    <select id="listAllUnitedpart" resultMap="unitedpartResult">
+        select * FROM t_unitedpart
+    </select>
+    <select id="queryByUnitedpartId" parameterType="java.lang.Integer" resultMap="unitedpartResult">
+        SELECT * FROM t_unitedpart WHERE unitedpart_id=#{id}
+    </select>
+    <select id="queryByPersonId" parameterType="java.lang.String" resultMap="unitedpartResult">
+        SELECT * FROM t_unitedpart WHERE  person_id=#{id}
+    </select>
+    <insert id="insertUnitedpart" parameterType="ssm.entity.Unitedpart">
+        insert into t_unitedpart (person_id, unitedpart_country, unitedpart_province, unitedpart_city, unitedpart_county, unitedpart_school, unitedpart_times, unitedpart_position, unitedpart_start_time, unitedpart_end_time)
+        values (#{unitedpart.personId},#{unitedpart.unitedpartCountry},#{unitedpart.unitedpartProvince},#{unitedpart.unitedpartCity},#{unitedpart.unitedpartCounty},
+        #{unitedpart.unitedpartSchool},#{unitedpart.unitedpartTimes},#{unitedpart.unitedpartPosition},#{unitedpart.unitedpartStartTime},#{unitedpart.unitedpartEndTime});
+    </insert>
+    <delete id="deleteByUnitedpartId" parameterType="java.lang.Integer">
+        DELETE FROM t_unitedpart WHERE unitedpart_id=#{id}
+    </delete>
+    <delete id="deleteByPersonId" parameterType="java.lang.String">
+        DELETE FROM t_unitedpart WHERE person_id=#{personId}
+    </delete>
+    <update id="updateUnitedpart" parameterType="ssm.entity.Unitedpart">
+        UPDATE t_unitedpart SET unitedpart_country=#{unitedpart.unitedpartCountry},unitedpart_province=#{unitedpart.unitedpartProvince},unitedpart_city=#{unitedpart.unitedpartCity},
+        unitedpart_county=#{unitedpart.unitedpartCounty},unitedpart_school=#{unitedpart.unitedpartSchool},unitedpart_times=#{unitedpart.unitedpartTimes},unitedpart_position=#{unitedpart.unitedpartPosition},
+        unitedpart_start_time=#{unitedpart.unitedpartStartTime},unitedpart_end_time=#{unitedpart.unitedpartEndTime} WHERE unitedpart_id=#{unitedpart.unitedpartId}
+    </update>
+</mapper>

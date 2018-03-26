@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.mapper.PoliticalpartMapper">
+    <resultMap id="politicalpartResult" type="ssm.entity.Politicalpart">
+        <id property="politicalpartId" column="politicalpart_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="politicalpartCountry" column="politicalpart_country"/>
+        <result property="politicalpartProvince" column="politicalpart_province"/>
+        <result property="politicalpartCity" column="politicalpart_city"/>
+        <result property="politicalpartCounty" column="politicalpart_county"/>
+        <result property="politicalpartSchool" column="politicalpart_school"/>
+        <result property="politicalpartTimes" column="politicalpart_times"/>
+        <result property="politicalpartPosition" column="politicalpart_position"/>
+        <result property="politicalpartStartTime" column="politicalpart_start_time"/>
+        <result property="politicalpartEndTime" column="politicalpart_end_time"/>
+    </resultMap>
+    <select id="listAllPoliticalpart" resultMap="politicalpartResult">
+        select * FROM t_politicalpart
+    </select>
+    <select id="queryByPoliticalpartId" parameterType="java.lang.Integer" resultMap="politicalpartResult">
+        SELECT * FROM t_politicalpart WHERE politicalpart_id=#{id}
+    </select>
+    <select id="queryByPersonId" parameterType="java.lang.String" resultMap="politicalpartResult">
+        SELECT * from t_politicalpart WHERE person_id=#{id}
+    </select>
+    <insert id="insertPoliticalpart" parameterType="ssm.entity.Politicalpart">
+        INSERT  INTO t_politicalpart(person_id,politicalpart_country,politicalpart_province,politicalpart_city,politicalpart_county,politicalpart_school,politicalpart_times,politicalpart_position,politicalpart_start_time,politicalpart_end_time)
+        VALUES (#{politicalpart.personId},#{politicalpart.politicalpartCountry},#{politicalpart.politicalpartProvince},#{politicalpart.politicalpartCity},#{politicalpart.politicalpartCounty},
+        #{politicalpart.politicalpartSchool},#{politicalpart.politicalpartTimes},#{politicalpart.politicalpartPosition},#{politicalpart.politicalpartStartTime},#{politicalpart.politicalpartEndTime})
+    </insert>
+    <delete id="deleteByPoliticalpartId" parameterType="java.lang.Integer">
+        DELETE FROM t_politicalpart WHERE politicalpart_id=#{id}
+    </delete>
+    <delete id="deleteByPersonId" parameterType="java.lang.String">
+        DELETE FROM t_politicalpart WHERE person_id=#{personId}
+    </delete>
+    <update id="updatePoliticalpart" parameterType="ssm.entity.Politicalpart">
+        UPDATE t_politicalpart SET politicalpart_country=#{politicalpart.politicalpartCountry},politicalpart_province=#{politicalpart.politicalpartProvince},politicalpart_city=#{politicalpart.politicalpartCity},
+        politicalpart_county=#{politicalpart.politicalpartCounty},politicalpart_school=#{politicalpart.politicalpartSchool},politicalpart_times=#{politicalpart.politicalpartTimes},
+        politicalpart_position=#{politicalpart.politicalpartPosition},politicalpart_start_time=#{politicalpart.politicalpartStartTime},politicalpart_end_time=#{politicalpart.politicalpartEndTime}
+        WHERE politicalpart_id=#{politicalpart.politicalpartId}
+    </update>
+</mapper>

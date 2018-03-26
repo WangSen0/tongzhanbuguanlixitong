@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.mapper.PoliticalperformenceMapper">
+    <resultMap id="politicalperformenceResult" type="ssm.entity.Politicalperformence">
+        <id property="politicalperformenceId" column="politicalperformence_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="politicalperformenceContent" column="politicalperformence_content"/>
+    </resultMap>
+    <select id="listAllPoliticalperformence" resultMap="politicalperformenceResult">
+        select * FROM t_politicalperformence
+    </select>
+    <select id="queryByPoliticalperformenceId" parameterType="java.lang.Integer" resultMap="politicalperformenceResult">
+        SELECT * FROM t_politicalperformence where politicalperformence_id=#{id}
+    </select>
+    <select id="queryByPersonId" parameterType="java.lang.String" resultMap="politicalperformenceResult">
+        SELECT * FROM t_politicalperformence WHERE person_id=#{id}
+    </select>
+    <insert id="insertPoliticalperformence" parameterType="ssm.entity.Politicalperformence">
+        INSERT INTO t_politicalperformence(person_id,politicalperformence_content)VALUES (#{politicalperformence.personId},#{politicalperformence.politicalperformenceContent})
+    </insert>
+    <delete id="deleteAllPoliticalperformenceId" parameterType="java.lang.Integer">
+        DELETE FROM t_politicalperformence WHERE politicalperformence_id=#{id}
+    </delete>
+    <delete id="deleteByPersonId" parameterType="java.lang.String">
+        DELETE FROM t_politicalperformence WHERE person_id=#{personId}
+    </delete>
+    <update id="updatePoliticalperformence" parameterType="ssm.entity.Politicalperformence">
+        UPDATE t_politicalperformence SET politicalperformence_content=#{politicalperformence.politicalperformenceContent} WHERE politicalperformence_id=#{politicalperformence.politicalperformenceId}
+    </update>
+</mapper>

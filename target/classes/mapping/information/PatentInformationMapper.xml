@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.mapper.information.PatentInformationMapper">
+    <resultMap id="patentResult" type="ssm.entity.Patent">
+        <id property="id" column="id"/>
+        <result property="patentId" column="patent_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="patentTitle" column="patent_title"/>
+        <result property="patentType" column="patent_type"/>
+        <result property="patentAuthor" column="patent_author"/>
+    </resultMap>
+    <select id="queryByPersonId" parameterType="java.lang.String" resultMap="patentResult">
+        SELECT * FROM b_patent WHERE person_id=#{personId}
+    </select>
+</mapper>

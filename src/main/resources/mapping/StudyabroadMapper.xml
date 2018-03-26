@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.mapper.StudyabroadMapper">
+    <resultMap id="studyabroadResult" type="ssm.entity.Studyabroad">
+        <id property="studyabroadId" column="studyabroad_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="studyabroadStatus" column="studyabroad_status"/>
+        <result property="studyabroadType" column="studyabroad_type"/>
+        <result property="studyabroadPurpose" column="studyabroad_purpose"/>
+        <result property="studyabroadCountry" column="studyabroad_country"/>
+
+        <result property="studyabroadSchool" column="studyabroad_school"/>
+        <result property="studyabroadGoabroadIdentity" column="studyabroad_goabroad_identity"/>
+        <result property="studyabroadStudyabroadIdentity" column="studyabroad_studyabroad_identity"/>
+        <result property="studyabroadLimit" column="studyabroad_limit"/>
+        <result property="studyabroadLimitMonth" column="studyabroad_limit_month"/>
+
+        <result property="studyabroadStartTime" column="studyabroad_start_time"/>
+        <result property="studyabroadEndTime" column="studyabroad_end_time"/>
+        <result property="studyabroadRemark" column="studyabroad_remark"/>
+    </resultMap>
+    <select id="listAllStudyabroad" resultMap="studyabroadResult">
+        select * FROM t_studyabroad
+    </select>
+    <select id="queryByStudyabroadId" parameterType="java.lang.Integer" resultMap="studyabroadResult">
+        SELECT  * FROM t_studyabroad WHERE studyabroad_id=#{id}
+    </select>
+    <select id="queryByPersonId" parameterType="java.lang.String" resultMap="studyabroadResult">
+        SELECT * FROM t_studyabroad WHERE person_id=#{id}
+    </select>
+    <insert id="insertStudyabroad" parameterType="ssm.entity.Studyabroad">
+        insert into t_studyabroad (person_id, studyabroad_status, studyabroad_type, studyabroad_purpose, studyabroad_country, studyabroad_school, studyabroad_goabroad_identity, studyabroad_studyabroad_identity, studyabroad_limit, studyabroad_limit_month, studyabroad_start_time, studyabroad_end_time, studyabroad_remark)
+        values (#{studyabroad.personId},#{studyabroad.studyabroadStatus},#{studyabroad.studyabroadType},#{studyabroad.studyabroadPurpose},#{studyabroad.studyabroadCountry},
+        #{studyabroad.studyabroadSchool},#{studyabroad.studyabroadGoabroadIdentity},#{studyabroad.studyabroadStudyabroadIdentity},#{studyabroad.studyabroadLimit},#{studyabroad.studyabroadLimitMonth},
+        #{studyabroad.studyabroadStartTime},#{studyabroad.studyabroadEndTime},#{studyabroad.studyabroadRemark});
+    </insert>
+    <delete id="deleteByStudyabroadId" parameterType="java.lang.Integer">
+        DELETE FROM t_studyabroad WHERE studyabroad_id=#{id}
+    </delete>
+    <delete id="deleteByPersonId" parameterType="java.lang.String">
+        DELETE FROM t_studyabroad WHERE person_id=#{personId}
+    </delete>
+    <update id="updateStudyabroad" parameterType="ssm.entity.Studyabroad">
+        UPDATE t_studyabroad SET studyabroad_status=#{studyabroad.studyabroadStatus},studyabroad_type=#{studyabroad.studyabroadType},studyabroad_purpose=#{studyabroad.studyabroadPurpose},
+        studyabroad_country=#{studyabroad.studyabroadCountry},studyabroad_school=#{studyabroad.studyabroadSchool},studyabroad_goabroad_identity=#{studyabroad.studyabroadGoabroadIdentity},
+        studyabroad_studyabroad_identity=#{studyabroad.studyabroadStudyabroadIdentity},studyabroad_limit=#{studyabroad.studyabroadLimit},studyabroad_limit_month=#{studyabroad.studyabroadLimitMonth},
+        studyabroad_start_time=#{studyabroad.studyabroadStartTime},studyabroad_end_time=#{studyabroad.studyabroadEndTime},studyabroad_remark=#{studyabroad.studyabroadRemark}
+        WHERE studyabroad_id=#{studyabroad.studyabroadId}
+    </update>
+    <select id="queryStudyabroadCountry" resultType="java.lang.String">
+        SELECT DISTINCT (studyabroad_country) FROM t_studyabroad WHERE studyabroad_country!=''
+    </select>
+</mapper>

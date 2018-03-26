@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.mapper.PatentMapper">
+    <resultMap id="patentResult" type="ssm.entity.Patent">
+        <id property="id" column="id"/>
+        <result property="patentId" column="patent_id"/>
+        <result property="personId" column="person_id"/>
+        <result property="patentTitle" column="patent_title"/>
+        <result property="patentType" column="patent_type"/>
+        <result property="patentAuthor" column="patent_author"/>
+    </resultMap>
+    <select id="listAllPatent" resultMap="patentResult">
+        select * FROM t_patent
+    </select>
+    <select id="queryByPatentId" parameterType="java.lang.Integer" resultMap="patentResult">
+        SELECT * FROM t_patent WHERE id=#{id}
+    </select>
+    <select id="queryByPersonId" parameterType="java.lang.String" resultMap="patentResult">
+        SELECT * FROM t_patent WHERE person_id=#{id}
+    </select>
+    <insert id="insertPatent" parameterType="ssm.entity.Patent">
+        INSERT INTO t_patent(patent_id,person_id,patent_title,patent_type,patent_author) VALUES (#{patent.patentId},#{patent.personId},#{patent.patentTitle},#{patent.patentType},#{patent.patentAuthor})
+    </insert>
+    <delete id="deleteByPatentId" parameterType="java.lang.Integer">
+        DELETE FROM t_patent WHERE id=#{id}
+    </delete>
+    <delete id="deleteByPersonId" parameterType="java.lang.String">
+        DELETE FROM t_patent WHERE person_id=#{personId}
+    </delete>
+    <update id="updatePatent" parameterType="ssm.entity.Patent">
+        UPDATE t_patent SET patent_id=#{patent.patentId}, patent_title=#{patent.patentTitle},patent_type=#{patent.patentType},patent_author=#{patent.patentAuthor}  WHERE id=#{patent.id}
+    </update>
+</mapper>
